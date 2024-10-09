@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Fuente de Datos | Análisis de Series de Tiempo de Temperatura del Agua de Mar</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Fuente de Datos | Análisis de Series de Tiempo de Temperatura del Agua de Mar" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="https://github.com/lvasquez2387/Series_tiempo_bookdown.git" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Fuente de Datos | Análisis de Series de Tiempo de Temperatura del Agua de Mar" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Laura Marcela Vásquez López" />
+
+
+<meta name="date" content="2024-10-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="justificación.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="justificación.html"><a href="justificación.html"><i class="fa fa-check"></i><b>2</b> Justificación</a></li>
+<li class="chapter" data-level="3" data-path="fuente-de-datos.html"><a href="fuente-de-datos.html"><i class="fa fa-check"></i><b>3</b> Fuente de Datos</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis de Series de Tiempo de Temperatura del Agua de Mar</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fuente-de-datos" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Fuente de Datos<a href="fuente-de-datos.html#fuente-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>La base de datos que se utilizará a lo largo del curso es proporcionada por el programa Copernicus, específicamente a través de su Servicio de Monitoreo del Medio Marino (CMEMS, por sus siglas en inglés). Esta base de datos ofrece una cobertura global de alta calidad para el monitoreo de la temperatura superficial del mar (TSM), permitiendo analizar fenómenos climáticos y océano-atmosféricos. Copernicus recopila y procesa datos satelitales junto con mediciones in situ, lo que garantiza una representación precisa y detallada de las condiciones del océano.</p>
+<p>Los datos disponibles en esta base abarcan desde 1991 hasta la actualidad, con actualizaciones continuas que permiten monitorear las variaciones en tiempo real. La resolución espacial de los datos varía, pero comúnmente alcanza una malla de 0.25 grados (~25 km), lo que permite observar detalles a escala regional y local. Además, la resolución temporal es diaria, lo que facilita un análisis detallado y preciso de las variaciones de la TSM en el corto y largo plazo.</p>
+<p>Dentro de esta malla global, el análisis se centrará en un punto específico ubicado en el sur del Pacífico colombiano, con coordenadas -77.8 de longitud y 2.0 de latitud. Este punto es empleado como referencia por el Centro de Investigaciones Oceanográficas e Hidrográficas del Pacífico (CCCP) debido a que se han venido realizando mediciones sistemáticas quincenales desde 1991, proporcionando una serie de tiempo extensa y continua. Este punto es clave para el monitoreo del fenómeno de El Niño, ya que se encuentra en una región cercana al Pacífico tropical ecuatorial, donde comúnmente se origina este evento.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="justificación.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

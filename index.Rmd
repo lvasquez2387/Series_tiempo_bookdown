@@ -1,0 +1,20 @@
+---
+title: "Análisis de Series de Tiempo de Temperatura del Agua de Mar"
+author: "Laura Marcela Vásquez López"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::pdf_book: default
+  bookdown::gitbook: default
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+github-repo: https://github.com/lvasquez2387/Series_tiempo_bookdown.git
+---
+
+
+# Introducción
+
+Este es un libro sobre el análisis de series de tiempo en oceanografía.
+
+
