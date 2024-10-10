@@ -1,0 +1,15 @@
+h1.title {
+    text-align: center;
+    color: #004080; /* Color azul oscuro */
+}
+
+/* Cambiar el color de los títulos de nivel 1 */
+h1 {
+    color: #1a237e; /* Azul oscuro */
+}
+
+/* Justificar el texto en párrafos */
+p {
+    text-align: justify;
+}
+
