@@ -1,6 +1,8 @@
 ---
 title: "Análisis de Series de Tiempo de Temperatura del Agua de Mar"
-author: "Laura Marcela Vásquez López"
+author: 
+  - name: "Laura Marcela Vásquez López"
+  - name: "Iván Posada Mesa"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
