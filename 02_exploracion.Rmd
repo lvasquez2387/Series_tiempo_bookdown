@@ -13,13 +13,15 @@ knitr::opts_chunk$set(
 
 <details>
 <summary>Mostrar código</summary>
-```{r explorar1, eval=FALSE}
+```{r explorar1, echo=TRUE}
+suppressPackageStartupMessages({
 library(ncdf4)
 library(tidyverse)
 library(dplyr)
 library(lubridate)
 library(ggplot2)
 
+})
 archivo_nc <- nc_open ("C:/Users/lvasquez/OneDrive - PUJ Cali/2024_2/Series_de_tiempo/Unidad_1/Act_Bookdown/Series_tiempo_bookdown/Datos/cmems_mod_glo_phy_my_0.083deg_P1M-m_1729290245365.nc")
 
 # Extracción de variables de interés
@@ -49,46 +51,7 @@ ggplot(df_tsm, aes(x = Date, y = tsm)) +
 ```
 </details>
 
-```{r explorar2, echo=FALSE}
-suppressPackageStartupMessages({
-library(ncdf4)
-library(tidyverse)
-library(dplyr)
-library(lubridate)
-library(ggplot2)
-})
-
-archivo_nc <- nc_open ("C:/Users/lvasquez/OneDrive - PUJ Cali/2024_2/Series_de_tiempo/Unidad_1/Act_Bookdown/Series_tiempo_bookdown/Datos/cmems_mod_glo_phy_my_0.083deg_P1M-m_1729290245365.nc")
-#C:/Users/ASUS/OneDrive - PUJ Cali/2024_2/Series_de_tiempo/Unidad_1/Act_Bookdown/Series_tiempo_bookdown/Datos
-#C:\Users/lvasquez/OneDrive - PUJ Cali/2024_2/Series_de_tiempo/Unidad_1/Act_Bookdown/Series_tiempo_bookdown/Datos
-#("C:/Users/aleja/Documents/- Personales/R/Series de #/cmems_mod_glo_phy_my_0.083deg_P1M-m_1729290245365.nc")
-
-# Extracción de variables de interés
-tsm <- ncvar_get(archivo_nc, "thetao")
-tiempo <- ncvar_get(archivo_nc, "time")
-latitud <- ncvar_get(archivo_nc, "latitude")
-longitud <- ncvar_get(archivo_nc, "longitude")
-
-# Creacion de dataframe 
-df_tsm <- data.frame(
-  tiempo = as.POSIXct(tiempo, origin = "1970-01-01", tz = "UTC"),
-  latitud = rep(latitud, each = length(longitud)),
-  longitud = rep(longitud, length(latitud)),
-  tsm = as.vector(tsm)
-)
-
-# Grafica exploratoria inicial
-df_tsm$Date <- as.Date(df_tsm$tiempo, origin = "1970-01-01")
-
-# Graficar
-ggplot(df_tsm, aes(x = Date, y = tsm)) +
-  geom_line(color = "blue") +
-  labs(title = "Serie Temporal Original de Temperatura Superficial del Mar", 
-       x = "Fecha", y = "Temperatura (°C)") +
-  scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
-  theme(plot.title = element_text(hjust = 0.5))
-```
-
+![](_main_files/figure-html/explorar-1.png)
 
 El promedio móvil, el rezago y la estacionalidad son técnicas fundamentales en el análisis de series temporales, utilizadas para identificar y entender los patrones subyacentes en los datos. El promedio móvil se aplica para suavizar las fluctuaciones a corto plazo, proporcionando una visión más clara de las tendencias a largo plazo al promediar valores consecutivos. El rezago, por su parte, implica desplazar la serie en el tiempo para analizar cómo los valores pasados influyen en los presentes, lo cual es esencial para modelar la autocorrelación y predecir futuros comportamientos. Finalmente, la estacionalidad se refiere a los patrones recurrentes en intervalos específicos (por ejemplo, mensual o anual), y su análisis permite identificar ciclos repetitivos que pueden ser cruciales para la toma de decisiones y el pronóstico de eventos futuros.
 
@@ -100,39 +63,7 @@ Para el análisis de la serie temporal de la temperatura superficial del mar (TS
 
 <details>
 <summary>Mostrar código</summary>
-```{r mmovil1, eval=FALSE}
-
-library(dplyr)
-library(zoo)
-
-# Calcular la media móvil de 12 meses
-df_tsm$mov_avg_tsm <- rollmean(df_tsm$tsm, k = 12, fill = NA, align = "right")
-
-# Filtrar el dataframe para mostrar solo los meses donde hay una media móvil
-df_mov_avg <- df_tsm %>% filter(!is.na(mov_avg_tsm))
-
-# Mostrar el dataframe resultante
-#print(df_tsm)
-
-# Crear un gráfico de la serie temporal y la media móvil
-ggplot(df_tsm, aes(x = Date)) +
-  geom_line(aes(y = tsm), color = "blue", alpha = 0.5) +
-  geom_line(aes(y = mov_avg_tsm), color = "red") +
-  labs(title = "TSM y Media Móvil de 12 Meses",
-       x = "Fecha",
-       y = "TSM",
-       caption = "Línea azul: TSM; Línea roja: Media Móvil de 12 Meses") +
-  scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.caption = element_text(hjust = 0.5))
-
-
-```
-</details>
-
-
-```{r mmovil2, echo=FALSE}
+```{r mmovil1, echo=TRUE}
 
 suppressPackageStartupMessages({
 library(dplyr)
@@ -163,6 +94,9 @@ ggplot(df_tsm, aes(x = Date)) +
 
 
 ```
+</details>
+
+![](_main_files/figure-html/mmovil-1.png)
 
 A partir del análisis de la media móvil anual aplicada a la temperatura superficial del mar (TSM), se observa que esta técnica suaviza la variabilidad de la señal original, lo que permite identificar de manera más clara la tendencia creciente a lo largo del tiempo. En particular, se evidencia que la temperatura superficial del mar ha venido incrementándose de forma paulatina desde 1993 hasta la actualidad en este punto de interés.
 
@@ -170,7 +104,7 @@ A partir del análisis de la media móvil anual aplicada a la temperatura superf
 
 <details>
 <summary>Mostrar código</summary>
-```{r lag1, eval=FALSE}
+```{r lag1, echo=TRUE}
 
 library(dplyr)
 library(ggplot2)
@@ -221,56 +155,7 @@ combined_plot
 ```
 </details>
 
-
-```{r lag2, echo=FALSE}
-
-library(dplyr)
-library(ggplot2)
-library(tidyr)
-library(patchwork)
-
-# Crear columnas de rezagos en el dataframe
-df_tsm <- df_tsm %>%
-  mutate(TSM_lag1 = lag(tsm, n = 1),
-         TSM_lag2 = lag(tsm, n = 12))
-         
-
-# Eliminar filas con valores NA 
-df_lag <- na.omit(df_tsm)
-
-# Convertir a formato largo
-df_long <- df_lag %>%
-  pivot_longer(cols = c(tsm, TSM_lag1, TSM_lag2), 
-               names_to = "Lag", 
-               values_to = "Value")
-
-# Gráfico 1: TSM y TSM_lag1
-plot1 <- ggplot(df_long %>% filter(Lag %in% c("tsm", "TSM_lag1")), aes(x = Date)) + 
-  geom_line(aes(y = Value, color = Lag)) +
-  labs(title = "Comparativa de TSM y TSM Lag 1",
-       x = "Fecha",
-       y = "Temperatura Superficial del Mar") +
-  scale_color_manual(values = c("blue", "red")) +
-  scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-# Gráfico 2: TSM y TSM_lag2
-plot2 <- ggplot(df_long %>% filter(Lag %in% c("tsm", "TSM_lag2")), aes(x = Date)) +  
-  geom_line(aes(y = Value, color = Lag)) +
-  labs(title = "Comparativa de TSM y TSM Lag 2",
-       x = "Fecha",
-       y = "Temperatura Superficial del Mar") +
-  scale_color_manual(values = c("blue", "green")) +
-  scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
-
-# Combinar los gráficos en un solo layout
-combined_plot <- plot1 / plot2
-combined_plot
-
-```
+![](_main_files/figure-html/lag-1.png)
 
 ### Gráfica 1: Comparativa de TSM y TSM Lag 1
 
@@ -288,7 +173,7 @@ En conjunto, ambas gráficas sugieren que la temperatura superficial del mar est
 
 <details>
 <summary>Mostrar código</summary>
-```{r estacionalidad1, eval=FALSE}
+```{r estacionalidad1, echo=TRUE}
 
 # Convertir la columna TSM a un objeto de serie temporal
 tsm_ts <- ts(df_tsm$tsm, start = c(year(min(df_tsm$Date)), month(min(df_tsm$Date))), frequency = 12)  
@@ -323,39 +208,9 @@ ggplot(seasonal_df, aes(x = fecha)) +
 ```
 </details>
 
-```{r estacionalidad2, echo=FALSE}
+![](_main_files/figure-html/estacionalidad-1.png)
+![](_main_files/figure-html/estacionalidad-2.png)
 
-# Convertir la columna TSM a un objeto de serie temporal
-tsm_ts <- ts(df_tsm$tsm, start = c(year(min(df_tsm$Date)), month(min(df_tsm$Date))), frequency = 12)  
-
-# Descomposición de la serie
-decomposed <- decompose(tsm_ts)
-
-# Mostrar los componentes
-plot(decomposed)
-
-# Convertir los componentes a un dataframe
-seasonal_df <- data.frame(fecha = df_tsm$Date,
-                           TSM = df_tsm$tsm,
-                           Seasonal = decomposed$seasonal) 
-
-# Calcular la media de la TSM
-mean_tsm <- mean(df_lag$tsm, na.rm = TRUE)
-# Ajustar la componente estacional
-seasonal_df$seasonal_adjusted <- seasonal_df$Seasonal + mean_tsm
-
-# Gráfico de TSM y Estacionalidad
-ggplot(seasonal_df, aes(x = fecha)) +
-  geom_line(aes(y = TSM, color = "TSM")) +
-  geom_line(aes(y = seasonal_adjusted, color = "Componente Estacional")) +
-  labs(title = "Temperatura Superficial del Mar y su Componente Estacional",
-       x = "Fecha",
-       y = "Temperatura Superficial del Mar") +
-  scale_color_manual(values = c("blue", "red")) +
-   scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
-  theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5))
-```
 El análisis de la componente estacional de la temperatura superficial del mar (TSM) revela un patrón cíclico anual caracterizado por variaciones regulares en la temperatura a lo largo del año. La amplitud de estas fluctuaciones estacionales indica la magnitud de las diferencias térmicas entre las estaciones, mientras que la fase señala la época del año en que se alcanzan los valores máximos y mínimos. Esta componente estacional explica una porción significativa de la variabilidad total de la TSM, lo que subraya la importancia de los factores estacionales en la dinámica de la temperatura del océano. Sin embargo, es importante reconocer que la TSM también está influenciada por otros factores, como tendencias a largo plazo y eventos climáticos extremos, que pueden provocar desviaciones de la componente estacional. Los puntos donde la TSM se desvía significativamente de la componente estacional pueden indicar la ocurrencia de eventos especiales, como El Niño o La Niña, que pueden causar anomalías en la temperatura del mar, los cuales ejercen una influencia considerable en la temperatura del mar a escala global. En resumen, la descomposición estacional de la TSM proporciona una valiosa herramienta para comprender los procesos físicos que subyacen a la variabilidad de la temperatura del océano, pero es fundamental considerar también otros factores que pueden influir en esta variable clave del sistema climático.
 
 
