@@ -1,0 +1,8 @@
+<request>
+    <boundingBox>
+        <southBoundLatitude>1.0</southBoundLatitude>
+        <northBoundLatitude>10.0</northBoundLatitude>
+        <westBoundLongitude>-84.0</westBoundLongitude>
+        <eastBoundLongitude>-77.0</eastBoundLongitude>
+    </boundingBox>
+</request>

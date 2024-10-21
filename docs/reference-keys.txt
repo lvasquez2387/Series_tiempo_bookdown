@@ -1,2 +1,9 @@
 justificación
 fuente-de-datos
+exploración-de-la-serie-de-tiempo
+media-movil-anual
+rezago
+gráfica-1-comparativa-de-tsm-y-tsm-lag-1
+gráfica-2-comparativa-de-tsm-y-tsm-lag-2
+análisis-combinado
+estacionalidad
