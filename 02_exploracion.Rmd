@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 
 <details>
 <summary>Mostrar código</summary>
-```{r explorar1, echo=TRUE}
+```{r explorar1, eval=FALSE}
 suppressPackageStartupMessages({
 library(ncdf4)
 library(tidyverse)
@@ -63,7 +63,7 @@ Para el análisis de la serie temporal de la temperatura superficial del mar (TS
 
 <details>
 <summary>Mostrar código</summary>
-```{r mmovil1, echo=TRUE}
+```{r mmovil1, eval=FALSE}
 
 suppressPackageStartupMessages({
 library(dplyr)
@@ -104,7 +104,7 @@ A partir del análisis de la media móvil anual aplicada a la temperatura superf
 
 <details>
 <summary>Mostrar código</summary>
-```{r lag1, echo=TRUE}
+```{r lag1, eval=FALSE}
 
 library(dplyr)
 library(ggplot2)
@@ -173,7 +173,7 @@ En conjunto, ambas gráficas sugieren que la temperatura superficial del mar est
 
 <details>
 <summary>Mostrar código</summary>
-```{r estacionalidad1, echo=TRUE}
+```{r estacionalidad1, eval=FALSE}
 
 # Convertir la columna TSM a un objeto de serie temporal
 tsm_ts <- ts(df_tsm$tsm, start = c(year(min(df_tsm$Date)), month(min(df_tsm$Date))), frequency = 12)  

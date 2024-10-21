@@ -207,7 +207,6 @@ Mostrar código
 <span id="cb1-32"><a href="exploración-de-la-serie-de-tiempo.html#cb1-32" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fecha&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Temperatura (°C)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb1-33"><a href="exploración-de-la-serie-de-tiempo.html#cb1-33" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">&quot;5 years&quot;</span>, <span class="at">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="sc">+</span></span>
 <span id="cb1-34"><a href="exploración-de-la-serie-de-tiempo.html#cb1-34" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<img src="_main_files/figure-html/explorar1-1.png" width="672" />
 </details>
 <p><img src="_main_files/figure-html/explorar-1.png" /></p>
 <p>El promedio móvil, el rezago y la estacionalidad son técnicas fundamentales en el análisis de series temporales, utilizadas para identificar y entender los patrones subyacentes en los datos. El promedio móvil se aplica para suavizar las fluctuaciones a corto plazo, proporcionando una visión más clara de las tendencias a largo plazo al promediar valores consecutivos. El rezago, por su parte, implica desplazar la serie en el tiempo para analizar cómo los valores pasados influyen en los presentes, lo cual es esencial para modelar la autocorrelación y predecir futuros comportamientos. Finalmente, la estacionalidad se refiere a los patrones recurrentes en intervalos específicos (por ejemplo, mensual o anual), y su análisis permite identificar ciclos repetitivos que pueden ser cruciales para la toma de decisiones y el pronóstico de eventos futuros.</p>
@@ -244,7 +243,6 @@ Mostrar código
 <span id="cb2-24"><a href="exploración-de-la-serie-de-tiempo.html#cb2-24" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb2-25"><a href="exploración-de-la-serie-de-tiempo.html#cb2-25" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
 <span id="cb2-26"><a href="exploración-de-la-serie-de-tiempo.html#cb2-26" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<img src="_main_files/figure-html/mmovil1-1.png" width="672" />
 </details>
 <p><img src="_main_files/figure-html/mmovil-1.png" /></p>
 <p>A partir del análisis de la media móvil anual aplicada a la temperatura superficial del mar (TSM), se observa que esta técnica suaviza la variabilidad de la señal original, lo que permite identificar de manera más clara la tendencia creciente a lo largo del tiempo. En particular, se evidencia que la temperatura superficial del mar ha venido incrementándose de forma paulatina desde 1993 hasta la actualidad en este punto de interés.</p>
@@ -300,7 +298,6 @@ Mostrar código
 <span id="cb3-43"><a href="exploración-de-la-serie-de-tiempo.html#cb3-43" tabindex="-1"></a><span class="co"># Combinar los gráficos en un solo layout</span></span>
 <span id="cb3-44"><a href="exploración-de-la-serie-de-tiempo.html#cb3-44" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> plot1 <span class="sc">/</span> plot2</span>
 <span id="cb3-45"><a href="exploración-de-la-serie-de-tiempo.html#cb3-45" tabindex="-1"></a>combined_plot</span></code></pre></div>
-<img src="_main_files/figure-html/lag1-1.png" width="672" />
 </details>
 <p><img src="_main_files/figure-html/lag-1.png" /></p>
 <div id="gráfica-1-comparativa-de-tsm-y-tsm-lag-1" class="section level3 hasAnchor" number="3.2.1">
@@ -329,30 +326,29 @@ Mostrar código
 <span id="cb4-5"><a href="exploración-de-la-serie-de-tiempo.html#cb4-5" tabindex="-1"></a>decomposed <span class="ot">&lt;-</span> <span class="fu">decompose</span>(tsm_ts)</span>
 <span id="cb4-6"><a href="exploración-de-la-serie-de-tiempo.html#cb4-6" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="exploración-de-la-serie-de-tiempo.html#cb4-7" tabindex="-1"></a><span class="co"># Mostrar los componentes</span></span>
-<span id="cb4-8"><a href="exploración-de-la-serie-de-tiempo.html#cb4-8" tabindex="-1"></a><span class="fu">plot</span>(decomposed)</span></code></pre></div>
-<p><img src="_main_files/figure-html/estacionalidad1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="exploración-de-la-serie-de-tiempo.html#cb5-1" tabindex="-1"></a><span class="co"># Convertir los componentes a un dataframe</span></span>
-<span id="cb5-2"><a href="exploración-de-la-serie-de-tiempo.html#cb5-2" tabindex="-1"></a>seasonal_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fecha =</span> df_tsm<span class="sc">$</span>Date,</span>
-<span id="cb5-3"><a href="exploración-de-la-serie-de-tiempo.html#cb5-3" tabindex="-1"></a>                           <span class="at">TSM =</span> df_tsm<span class="sc">$</span>tsm,</span>
-<span id="cb5-4"><a href="exploración-de-la-serie-de-tiempo.html#cb5-4" tabindex="-1"></a>                           <span class="at">Seasonal =</span> decomposed<span class="sc">$</span>seasonal) </span>
-<span id="cb5-5"><a href="exploración-de-la-serie-de-tiempo.html#cb5-5" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="exploración-de-la-serie-de-tiempo.html#cb5-6" tabindex="-1"></a><span class="co"># Calcular la media de la TSM</span></span>
-<span id="cb5-7"><a href="exploración-de-la-serie-de-tiempo.html#cb5-7" tabindex="-1"></a>mean_tsm <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_lag<span class="sc">$</span>tsm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-8"><a href="exploración-de-la-serie-de-tiempo.html#cb5-8" tabindex="-1"></a><span class="co"># Ajustar la componente estacional</span></span>
-<span id="cb5-9"><a href="exploración-de-la-serie-de-tiempo.html#cb5-9" tabindex="-1"></a>seasonal_df<span class="sc">$</span>seasonal_adjusted <span class="ot">&lt;-</span> seasonal_df<span class="sc">$</span>Seasonal <span class="sc">+</span> mean_tsm</span>
-<span id="cb5-10"><a href="exploración-de-la-serie-de-tiempo.html#cb5-10" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="exploración-de-la-serie-de-tiempo.html#cb5-11" tabindex="-1"></a><span class="co"># Gráfico de TSM y Estacionalidad</span></span>
-<span id="cb5-12"><a href="exploración-de-la-serie-de-tiempo.html#cb5-12" tabindex="-1"></a><span class="fu">ggplot</span>(seasonal_df, <span class="fu">aes</span>(<span class="at">x =</span> fecha)) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="exploración-de-la-serie-de-tiempo.html#cb5-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> TSM, <span class="at">color =</span> <span class="st">&quot;TSM&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="exploración-de-la-serie-de-tiempo.html#cb5-14" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> seasonal_adjusted, <span class="at">color =</span> <span class="st">&quot;Componente Estacional&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="exploración-de-la-serie-de-tiempo.html#cb5-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Temperatura Superficial del Mar y su Componente Estacional&quot;</span>,</span>
-<span id="cb5-16"><a href="exploración-de-la-serie-de-tiempo.html#cb5-16" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fecha&quot;</span>,</span>
-<span id="cb5-17"><a href="exploración-de-la-serie-de-tiempo.html#cb5-17" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Temperatura Superficial del Mar&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-18"><a href="exploración-de-la-serie-de-tiempo.html#cb5-18" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb5-19"><a href="exploración-de-la-serie-de-tiempo.html#cb5-19" tabindex="-1"></a>   <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">&quot;5 years&quot;</span>, <span class="at">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-20"><a href="exploración-de-la-serie-de-tiempo.html#cb5-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-21"><a href="exploración-de-la-serie-de-tiempo.html#cb5-21" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<img src="_main_files/figure-html/estacionalidad1-2.png" width="672" />
+<span id="cb4-8"><a href="exploración-de-la-serie-de-tiempo.html#cb4-8" tabindex="-1"></a><span class="fu">plot</span>(decomposed)</span>
+<span id="cb4-9"><a href="exploración-de-la-serie-de-tiempo.html#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="exploración-de-la-serie-de-tiempo.html#cb4-10" tabindex="-1"></a><span class="co"># Convertir los componentes a un dataframe</span></span>
+<span id="cb4-11"><a href="exploración-de-la-serie-de-tiempo.html#cb4-11" tabindex="-1"></a>seasonal_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fecha =</span> df_tsm<span class="sc">$</span>Date,</span>
+<span id="cb4-12"><a href="exploración-de-la-serie-de-tiempo.html#cb4-12" tabindex="-1"></a>                           <span class="at">TSM =</span> df_tsm<span class="sc">$</span>tsm,</span>
+<span id="cb4-13"><a href="exploración-de-la-serie-de-tiempo.html#cb4-13" tabindex="-1"></a>                           <span class="at">Seasonal =</span> decomposed<span class="sc">$</span>seasonal) </span>
+<span id="cb4-14"><a href="exploración-de-la-serie-de-tiempo.html#cb4-14" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="exploración-de-la-serie-de-tiempo.html#cb4-15" tabindex="-1"></a><span class="co"># Calcular la media de la TSM</span></span>
+<span id="cb4-16"><a href="exploración-de-la-serie-de-tiempo.html#cb4-16" tabindex="-1"></a>mean_tsm <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_lag<span class="sc">$</span>tsm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-17"><a href="exploración-de-la-serie-de-tiempo.html#cb4-17" tabindex="-1"></a><span class="co"># Ajustar la componente estacional</span></span>
+<span id="cb4-18"><a href="exploración-de-la-serie-de-tiempo.html#cb4-18" tabindex="-1"></a>seasonal_df<span class="sc">$</span>seasonal_adjusted <span class="ot">&lt;-</span> seasonal_df<span class="sc">$</span>Seasonal <span class="sc">+</span> mean_tsm</span>
+<span id="cb4-19"><a href="exploración-de-la-serie-de-tiempo.html#cb4-19" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="exploración-de-la-serie-de-tiempo.html#cb4-20" tabindex="-1"></a><span class="co"># Gráfico de TSM y Estacionalidad</span></span>
+<span id="cb4-21"><a href="exploración-de-la-serie-de-tiempo.html#cb4-21" tabindex="-1"></a><span class="fu">ggplot</span>(seasonal_df, <span class="fu">aes</span>(<span class="at">x =</span> fecha)) <span class="sc">+</span></span>
+<span id="cb4-22"><a href="exploración-de-la-serie-de-tiempo.html#cb4-22" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> TSM, <span class="at">color =</span> <span class="st">&quot;TSM&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="exploración-de-la-serie-de-tiempo.html#cb4-23" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> seasonal_adjusted, <span class="at">color =</span> <span class="st">&quot;Componente Estacional&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-24"><a href="exploración-de-la-serie-de-tiempo.html#cb4-24" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Temperatura Superficial del Mar y su Componente Estacional&quot;</span>,</span>
+<span id="cb4-25"><a href="exploración-de-la-serie-de-tiempo.html#cb4-25" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fecha&quot;</span>,</span>
+<span id="cb4-26"><a href="exploración-de-la-serie-de-tiempo.html#cb4-26" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Temperatura Superficial del Mar&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="exploración-de-la-serie-de-tiempo.html#cb4-27" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb4-28"><a href="exploración-de-la-serie-de-tiempo.html#cb4-28" tabindex="-1"></a>   <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">&quot;5 years&quot;</span>, <span class="at">date_labels =</span> <span class="st">&quot;%Y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-29"><a href="exploración-de-la-serie-de-tiempo.html#cb4-29" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-30"><a href="exploración-de-la-serie-de-tiempo.html#cb4-30" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 </details>
 <p><img src="_main_files/figure-html/estacionalidad-1.png" />
 <img src="_main_files/figure-html/estacionalidad-2.png" /></p>
